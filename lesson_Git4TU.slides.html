@@ -7473,17 +7473,6 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Version-management-best-practices">Version management best practices<a class="anchor-link" href="#Version-management-best-practices">¶</a></h1>
-</div>
-</div>
-</div>
-</div></section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Why-is-version-management-important?">Why is version management important?<a class="anchor-link" href="#Why-is-version-management-important?">¶</a></h2><ul>
 <li>Possible to revert back to a working version if things broke.</li>
 <li>Benefit team collaboration.</li>
@@ -7526,7 +7515,19 @@ The goals of this excercise are:</p>
 </div>
 </div>
 </div>
-</div></section></section><section><section>
+</div><aside class="notes">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This exercise should be done as a demo in plenum together with the students , so they faced all the necessary steps for manual versioning</p>
+</div>
+</div>
+</div>
+</div>
+</aside></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7538,16 +7539,32 @@ The goals of this excercise are:</p>
 </ol>
 <div class="highlight"><pre><span></span>mkdir<span class="w"> </span>~/Desktop/simple_trigonometry
 </pre></div>
-<ol>
-<li>Move to that folder and add a file called <code>CHANGELOG.txt</code> to your project folder that keep track of every changes to your project.</li>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ol start="2">
+<li>Move to that folder and add a file called <code>CHANGELOG.txt</code> to your project folder.</li>
 </ol>
 <div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Desktop/simple_trigonometry
 touch<span class="w"> </span>CHANGELOG.txt
 </pre></div>
-<ol>
-<li>Create a subfolder called <code>current</code> which is your latest version of your project.</li>
-</ol>
-<div class="highlight"><pre><span></span>mkdir<span class="w"> </span>current
+<p>The aim of the CHANGELOG.txt is to make dated notes about changes to the project in this file in reverse chronological order (i.e., most recent first). This file is the equivalent of a lab notebook, and should contain entries like those shown below.</p>
+<div class="highlight"><pre><span></span><span class="gu">## 2016-04-08</span>
+
+<span class="k">*</span><span class="w"> </span>Switched to cubic interpolation as default.
+<span class="k">*</span><span class="w"> </span>Moved question about family TB history to end of questionnaire.
+
+<span class="gu">## 2016-04-06</span>
+
+<span class="k">*</span><span class="w"> </span>Added option for cubic interpolation.
+<span class="k">*</span><span class="w"> </span>Removed question about staph exposure (can be inferred from blood test results).
 </pre></div>
 </div>
 </div>
@@ -7559,15 +7576,16 @@ touch<span class="w"> </span>CHANGELOG.txt
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="1B-Single-user-version-tracking">1B Single user version tracking<a class="anchor-link" href="#1B-Single-user-version-tracking">¶</a></h2><ol>
-<li><p>Create a new file called <code>test.py</code></p>
-<ul>
-<li>Add the text <code>print('hello world')</code></li>
-</ul>
-</li>
-<li><p>Update <code>CHANGELOG.txt</code> with the changes.</p>
-</li>
-</ol>
+<h2 id="1B-Copy-the-entire-project-whenever-a-significant-change-has-been-made">1B Copy the entire project whenever a significant change has been made<a class="anchor-link" href="#1B-Copy-the-entire-project-whenever-a-significant-change-has-been-made">¶</a></h2><p>(i.e., one that materially affects the results), and store that copy in a sub-folder whose name reflects the date in the area that's being synchronized. This approach results in projects being organized as shown below:</p>
+<div class="highlight"><pre><span></span>.
+<span class="p">|</span>--<span class="w"> </span>project_name
+<span class="p">|</span><span class="w">   </span>--<span class="w"> </span>current
+<span class="p">|</span><span class="w">       </span>--<span class="w"> </span>...project<span class="w"> </span>content<span class="w"> </span>as<span class="w"> </span>described<span class="w"> </span>earlier...
+<span class="p">|</span><span class="w">   </span>--<span class="w"> </span><span class="m">2016</span>-03-01
+<span class="p">|</span><span class="w">       </span>--<span class="w"> </span>...content<span class="w"> </span>of<span class="w"> </span><span class="s1">'current'</span><span class="w"> </span>on<span class="w"> </span>Mar<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">2016</span>
+<span class="p">|</span><span class="w">   </span>--<span class="w"> </span><span class="m">2016</span>-02-19
+<span class="p">|</span><span class="w">       </span>--<span class="w"> </span>...content<span class="w"> </span>of<span class="w"> </span><span class="s1">'current'</span><span class="w"> </span>on<span class="w"> </span>Feb<span class="w"> </span><span class="m">19</span>,<span class="w"> </span><span class="m">2016</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -7578,9 +7596,9 @@ touch<span class="w"> </span>CHANGELOG.txt
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="1C-Practice-basic-version-control-using-trigonometry">1C Practice basic version control using trigonometry<a class="anchor-link" href="#1C-Practice-basic-version-control-using-trigonometry">¶</a></h2><p>Add your changes every time you finish a bulletpoint.</p>
+<h2 id="1C-Example">1C Example<a class="anchor-link" href="#1C-Example">¶</a></h2><p>Add your changes every time you finish a bulletpoint.</p>
 <ul>
-<li>Add a function to <code>test.py</code> to calculate the circumference of a circle. Add your changes.</li>
+<li>Create a new file called <code>test.py</code> and add a function to <code>test.py</code> to calculate the circumference of a circle. Add your changes to the CHANGELOG.txt, and copy the entire project to a subfolder whose name reflects the data of the change.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Perimeter</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">r</span>
@@ -7596,23 +7614,7 @@ touch<span class="w"> </span>CHANGELOG.txt
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
-<li>Add a function to <code>test.py</code> to calculate the surface area of a circle. Add your changes.</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Area</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
-<li>Create a new file called <code>script.py</code> that is empty. Add your changes.</li>
+<li>Create a new file called <code>script.py</code> that is empty. Add your changes in the same manner as before</li>
 </ul>
 <div class="highlight"><pre><span></span>touch<span class="w"> </span>script.py
 </pre></div>
@@ -7647,13 +7649,40 @@ touch<span class="w"> </span>CHANGELOG.txt
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Problems-with-manual-version-control">Problems with manual version control<a class="anchor-link" href="#Problems-with-manual-version-control">¶</a></h2><ul>
-<li><p>It requires a lot of discipline</p>
-</li>
-<li><p>It is virtually impossible to resolve conflicts</p>
+<li><p>It requires a lot of discipline, systematicity and consistency.</p>
 </li>
 <li><p>Imagine tracking all changes by a team that collaborate in the same project folder , just manually !!!</p>
 </li>
+<li><p>Imagine that two members of the team modifies the same line from the file <code>test.py</code>.</p>
+<ul>
+<li>It is virtually impossible to resolve conflicts, with a manual version control  system</li>
 </ul>
+</li>
+<li><p>Exponentially growth of your project in terms of space.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Git-as-the-most-used-version-control-system">Git as the most used version control system<a class="anchor-link" href="#Git-as-the-most-used-version-control-system">¶</a></h1>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Git-is-a-distributed-version-control-system-(VCS)-that-automates-everything">Git is a <em>distributed</em> version control system (VCS) that automates everything<a class="anchor-link" href="#Git-is-a-distributed-version-control-system-(VCS)-that-automates-everything">¶</a></h2><p><img alt="" src="img/Git-Logo.png"/></p>
 </div>
 </div>
 </div>
