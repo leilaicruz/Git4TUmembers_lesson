@@ -15,3 +15,4 @@ pwd
 ```
     - if it is not the case, then we can have problems with establishing the SSH connection to a github repo 
     - solution 1: install WSL (Windows Subsystem for Linux) and work in a linux terminal 
+    - solution 2: generate the key in a predetermined folder 

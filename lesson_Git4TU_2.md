@@ -223,11 +223,11 @@ git commit -m "create  script calculate_mean.py"
 
 > A good commit message is short (< 50 characters), and completes the sentence: 'This will..' **message** [use slide] 
 
-> Now go to a slide and show what adds and commit means graphically 
+
 
 > Explanation of **staging**. The working directory, the staging area, and the git history. `git add` is used to define which files we want to commit. `git add` specifies what changes to stage; `git commit` takes a snapshot of the changes and writes them to the repository's history. [Use illustration]
 
-> Explanation of **modify-add-commit** cycle. [Use illustration]
+> Explanation of **modify-add-commit** cycle. [Use illustration] , go to a slide and show what adds and commit means graphically 
 
 
 > **Questions?**
@@ -236,18 +236,19 @@ git commit -m "create  script calculate_mean.py"
 
 > We know that a good coding practice is using comments to describe our code. Let's add some helpful comments to our script, e.g., author, python version and a short description of what the script does.
 
-* Add the following to the top of the script
+* Add  a docstring bellow the calculate_mean function:
 
     ```python
-    """ This module counts the number of lines in standard input
-    Input: a string from the system's standard input 
+    """ This function computes the mean of a one dimensional array.
+    Input: An one dimensional array
+    Output: The mean of the array
     """
     ```
 * check status
     ```shell
      git status
     ```
-    > Explanation: Notice that modified files are automatically tracked by Git, however they are not automatically committed. This is desiable because is up to the user to decide when and what to commit to the repository's history.
+    > Explanation: Notice that modified files are automatically tracked by Git, however they are not automatically committed. This is desirable because is up to the user to decide when and what to commit to the repository's history.
     
 
 #### b. Check Differences (review changes)
@@ -260,22 +261,28 @@ git commit -m "create  script calculate_mean.py"
 
 #### c. Add and Commit
 ```shell
-git add count-lines.py
+git add calculate_mean.py
 ```
 
 #### d. Diff vs Diff --staged
 
-```shell
-git diff [do not show the difference with staged change]
-git diff --staged [shows the difference with staged change]
+```bash
+git diff
 ```
+* this does not show the difference with staged change
+
+```bash
+git diff --staged
+```
+* shows the difference with staged change
+
 
 > `git diff`: shows the difference between no-staged changes and the previous commit. `git diff --staged`: shows the difference between staged-changes and the previous commit.
 
 Finally, commit the changes:
 
-```shell
-git commit -m "add description of expected input".
+```bash
+git commit -m "add docstring".
 ```
 
 ### 5. GIT & EMPTY DIRECTORIES [4 mins]
@@ -317,6 +324,19 @@ git status
 git commit -m "add some treatments for patients"
 ```
 
+> display a tree of the directory to see the behavious so far :
+
+```bash
+sudo apt-get install tree
+tree .
+```
+or in git bash 
+
+```bash
+cmd //c tree //a
+```
+
+> Go again to the illustration to explain 
 ### 6. IGNORING THINGS [6 mins]
 
 Say you have files you don't want to tack with git.
@@ -350,14 +370,27 @@ A good practice is to use comments to explain why files and directories are igno
 big-data.zip
 data/
 ```
+* Check git status 
+
+```bash
+git status
+```
 
 * Add and commit .gitignore*
+
+```bash
+git add .gitignore
+git commit -m "Ignoring data files"
+
+```
 
 
 #### c. Check What's Being Ignored
 ```shell
 git status --ignored
 ```
+
+> come back to the ilustration
 
 > **Questions?**
 
@@ -372,41 +405,50 @@ git status --ignored
 ### 7. EXPLORING THE HISTORY [16 min]
 
 #### a. Checking the Log
+
+
+
 ```shell
 git log
 git log --graph [optional]
 git log --oneline
 ```
+> it is like the CHANGELOG.txt file 
 
+```bash
+git log > changelog.txt
+```
 > Explanation of output: unique ID and list of commit messages.
 
 > Explanation content of Directory and where changes are stored.
 
-> Paging the log. **Q**= quit, **spacebar**= next page, **/**=search word, **N**=navigate thru matches. `git log -N` *N*=number of commits (latest to first). `git log --oneline`, limit output to one line. `git log --graph` print a text graph of the history tree.
+> Paging the log. **Q**= quit, **spacebar**= next page, **/**=search word, **N**=navigate thru matches. `git log --oneline`, limit output to one line. `git log --graph` print a text graph of the history tree.
 
 #### b. HEAD 
 > In the following parts (b-e) is more important to **put attention** than to follow along. Put attention, follow along only if you won't lose focus.
 
 > The **HEAD** is a **pointer** that refers to the *current active branch* in the git, which can be that last commit we made or the last commit that was checkout into the working directory. We haven't created more branches and the current history tree only contains one single branch, called by default **master** or **main**. In our case HEAD points to the most recent commit in the *master/main* branch. We can refer to the most recent commit using HEAD as an identifier.
 
-#### c. Add more to the Documentation of count-lines.py
+#### c. Add more to the Documentation of calculate_mean.py
 
 ```shell
-nano count-lines.py
+nano calculate_mean.py
 ```
 ```python
-# Output: a string with the total number of lines
+# Usage:
+# data=np.array([0,10,20,30])
+# mean=calculate_mean(data)
 ```
 
 #### d. Check Differences Compared to HEAD
 ```shell
-git diff HEAD count-lines.py
+git diff HEAD calculate_mean.py
 ```
-> This is the same as not using HEAD, because the HEAD is currently pointing to the latest commit. However, we can use **HEAD** to check the difference between the current state of `count-lines.py` (in the working directory) and previous commits.
+> This is the same as not using HEAD, because the HEAD is currently pointing to the latest commit. However, we can use **HEAD** to check the difference between the current state of `calculate_mean.py` (in the working directory) and previous commits.
 
 ```shell
-git diff HEAD~1 count-lines.py 
-git diff HEAD~3 count-lines.py
+git diff HEAD~1 calculate_mean.py 
+git diff HEAD~3 calculate_mean.py
 ```
 > `HEAD~1` compares with the last commit. `HEAD~3` compares to 3 commits ago. 
 
@@ -421,8 +463,8 @@ Usage:
 git log --oneline # [copy an ID to compare]
 ```
 ```shell
-git diff commit-id count-lines.py # [use ID for first commit]
-git diff commit-id HEAD count-lines.py # [use ID for first commit]
+git diff commit-id calculate_mean.py # [use ID for first commit]
+git diff commit-id HEAD calculate_mean.py # [use ID for first commit]
 ```
 > Wrap up this section by showing an illustration of the git history tree
 
@@ -430,18 +472,11 @@ git diff commit-id HEAD count-lines.py # [use ID for first commit]
 
 > **Follow along**
 
-> BEFORE THAT: if you haven't add a descripton for `Output` to count-lines.py. Do that using `nano`, and commit the changes.
+> BEFORE THAT: Add and commit the changes calculate_mean.py. 
 
 ```shell
- nano count-lines.py
-```
-```python
-# Output: a string with the total number of lines
-```
-
-```shell
-git add count-lines.py
-git commit -m "add description of output"
+git calculate_mean.py
+git commit -m "add usage"
 ```
 
 #### a. Revert to Older Versions Using an Identifier. 
@@ -452,8 +487,8 @@ git log --oneline # [copy ID of "description input"]
 ```
 
 ```shell
-git checkout <id--commit> count-lines.py # [will revert changes, use firts commit ID]
-cat count-lines.py
+git checkout <id--commit> calculate_mean.py # [will revert changes, use firts commit ID]
+cat calculate_mean.py
 ```
 
 #### b. Restore the version without any Docstring [Optional]
@@ -461,7 +496,7 @@ cat count-lines.py
 > **Additional example, used only if on schedule. Ask particpants to do them by themselves.**
 
 ```shell
-git checkout f9d7e9c count-lines.py  
+git checkout commit-id calculate_mean.py  
 ```
 
 > **Changes go to the staging area; they are not committed.** However, we always can go back to any version we have committed. To go back to the newest version, check out to HEAD.
@@ -469,14 +504,14 @@ git checkout f9d7e9c count-lines.py
 * check out to HEAD
 
     ```shell
-    git checkout HEAD count-lines.py 
-    cat count-lines.py [notice the file is back to the newest committed version]
+    git checkout HEAD calculate_mean.py 
+    cat calculate_mean.py [notice the file is back to the newest committed version]
     ```
 
 * Add and Commit the newest version
 
     ```shell
-    git add count-lines.py 
+    git add calculate_mean.py 
     git commit -m "update author's name"
     ```
 ------
@@ -555,7 +590,14 @@ git checkout f9d7e9c count-lines.py
 
 > Explain what GitHub is **[slides, 2 min]**
 
-#### 0. Conect to GitHub via SSH [Technical Break, 30 min]
+#### a. Create GitHub Repo 
+> Go to Github and create an empty and public repository called `patients-analysis`.
+
+- Repo description: *analysis of treatments for inflammation*
+
+#### b. Add Remote to Local Repo
+
+##### b0. Conect to GitHub via SSH [Technical Break, 30 min]
 
 > Recently, GitHub requires authentification via SSH to do pulls an pushes, but not for cloning. **Use illustrations** to explain what a SSH connection entitles.
 
@@ -564,11 +606,11 @@ To connect via SSH do the following:
 * Create a Key-pair inside the `.ssh`  in the Home directory
 
     ```shell
-    # move to Home directory
+    # move to Home directory 
     cd ~
     # create key
     ssh-keygen -t ed25519 -C "your_email@example.com"
-    # save to the default location and file name: ~/.ssh/id_ed25519
+    # save to the default location and file name: ~/.ssh/id_ed25519 , or put a specific address, relative to where you are :  ./Desktop/carpentry
     ```
 * Check the keys have been created
 
@@ -602,7 +644,6 @@ Mac and Linux user don't have to worry about this.
     ```
     
 
-
 * Go to GitHub, explain the basics of the interface and add the SSH key.
 
 Profile > Settings > SSH and GPG keys > New SSH key > Add SSH key
@@ -617,12 +658,7 @@ Profile > Settings > SSH and GPG keys > New SSH key > Add SSH key
 
 > Check the info on (Troubleshooting SSH[https://docs.github.com/en/authentication/troubleshooting-ssh]) for GitHub.
 
-#### a. Create GitHub Repo 
-> Go to Github and create an empty and public repository called `patients-analysis`.
-
-- Repo description: *analysis of treatments for inflammation*
-
-#### b. Add Remote to Local Repo
+####   b1 Add the remote 
 
 Move back to the repo directory: `~/Desktop/
 > In your local repository (on the terminal), add the remote repository and push the content.
@@ -664,17 +700,17 @@ Move back to the repo directory: `~/Desktop/
 
 > Explanation of when a conflict can happen: "A conflict arises when two collaborators make changes to the same line in a file, or when a file has been deleted by one collaborator, but edited by  another."
 
-> Demo using the `count-lines.py`. A helper and the Instructor will create a conflict and present a solution.
+> Demo using the `calculate_mean.py`. A helper and the Instructor will create a conflict and present a solution.
 
 #### a. Create conflict
 
 * [Instructor]: explains how to add collaborators to a repository in GitHub. He adds helper as collaborator.
-* [Helper]: pulls instructor's repo; edits `count-lines.py` and modifies the print line as follows: `print(count, 'total lines in standard input)`. 
+* [Helper]: pulls instructor's repo; edits `calculate_means.py` and modifies the print line as follows: `print(count, 'total lines in standard input)`. 
 * [Helper]: Adds, commits and pushes changes to remote.
-* [Instructor]: edits local `count-lines.py`; modifies the print line as follows: `print('We found', count, 'lines in standard input)` Add, commit and try to **pull**.
+* [Instructor]: edits local `calculate_mean.py`; modifies the print line as follows: `print('We found', count, 'lines in standard input)` Add, commit and try to **pull**.
 
 #### b. Solve conflict 
-* [Instructor]: explains why the conflict occurred and how to solve it by  editing `count-lines.py` and deciding what changes to keep. Then: add, commit,and  **push**.
+* [Instructor]: explains why the conflict occurred and how to solve it by  editing `calculate_mean.py` and deciding what changes to keep. Then: add, commit,and  **push**.
 
 ### 10. COLLABORATING  [15 min]
 
@@ -682,20 +718,20 @@ Move back to the repo directory: `~/Desktop/
 
 #### a. Clone workshop-check-in Repository
 
-> Move to the Desktop and clone the workshop-check-in repo. Share the link of the repo in the chat -> `https://github.com/manuGil/workshop-checkin.git`
+> Move to the Desktop and clone the workshop-check-in repo. Share the link of the repo in the chat -> `https://github.com/leilaicruz/workshop-checkin`
 
 ```shell
 cd ~/Desktop
-git clone https://github.com/manuGil/workshop-check-in.git
+git clone git@github.com:leilaicruz/workshop-checkin.git
 ```
 
 #### b. Create a Check-in file
 
-> Make a copy of `check-in/template.md` in the same Directory; remane the file using a unique name (e.g. three first laters of your name and the last two digits of your phone number. Mind the file extension ".md"
+> Make a copy of `check-in/template.md` in the same Directory; remane the file using a unique name (e.g. three first letters of your name and the last two digits of your phone number. Mind the file extension ".md")
 
 ```shell
 cd workshop-check-in
-cp check-in/template.md check-in/<my-nickname-file>.md
+cp check-in/template.md check-in/<my-nickname-file>.md 
 ```
 
 #### c. Edit your Check-in file 
@@ -726,16 +762,38 @@ git push origin main #[This works only if participants are added to the reposito
 
 #### e. [Optional] Demo Create branches and Pull requests 
 
+#### Create a branch from what was pull from main 
+
 ```shell
-git branch manuelg
-git checkout manuelg
+git pull origin main
+git branch leila71
+git checkout leila71
 ```
+
+#### c. Edit your Check-in file 
+> Edit `<my-name-file>.md` and change the content. You'll see some hints
+
+```shell
+nano check-in/<my-name-file>.md
+```
+
+#### d. Pull, Add, Commit, and Push to the remote
+
+A basic collaborative workflow using git is:
+
+* "Make changes and stage them with `git add`,"
+* "Commit changes with `git commit -m`, and"
+* "Upload the changes to GitHub with `git push origin leila71`"
+
+
 > Demo pull request on GitHub
+
+
 
 ### 11. LESSON SUMMARY [2 min]
 - Repository initialization `git init`
-- Git records changes via commits to the history three
-- Remember the **modify-add-commit** cycle
+- Git records changes via commits to the history tree
+- Remember the **modify-add-commit** cycle and the **working directory-stage-commit** areas
 - Don't include large datasets in your repositories. Set a `.gitignore` file
 - Remotes store copies of the git repositories (e.g., GitHub, GitLab)
 - Collaborative workflow using branches: **pull, add, commit, push, pull request**

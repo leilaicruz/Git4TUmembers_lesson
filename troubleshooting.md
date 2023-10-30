@@ -6,6 +6,8 @@
 
 - It seems that this is only happening is the TU laptop is on the TU network, at a home network , the git bash has the home folder where it should be. 
 
+- The other option is to generate the ssh key in a specific folder that is not home 
+
 ## when using WSL, if ~/.config does not exist 
 
 If the gitconfig file is not at the home folder of WSL , we can just copy it from the C:/Users/USERNAME folder or from the H:/ folder 
