@@ -7,6 +7,9 @@
 These lecture notes for the beginner-level of one of the lessons of the [Software Carpentry](https://swcarpentry.github.io/git-novice/). These notes assume the use of [Git terminal for Windows](https://gitforwindows.org/).
 The context and flow of this lesson have been addapted to better fit the audience.
 
+13:45 START
+
+
 ## PREPARATION
 To set up the command history on two terminals do the following:
 
@@ -17,6 +20,18 @@ $ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 2. On second (history) terminal:
 ```bash
 $ tail -f ~/.bash_history
+```
+## Preparation in my terminal 
+
+- Write
+
+```bash
+/mnt/c/Users/linigodelacruz/Desktop/
+```
+- Remove everything that is front '$' for a better view of commands:
+
+```bash
+export PS1='$ '
 ```
 
 ### Windows Terminal (Preview) [Keyboard shortcuts]
@@ -65,7 +80,7 @@ git config --list
 
 ```
 ```bash
-git config --global user.name "github-name"
+git config --global user.name "Your Name"
 git config --global user.email "github-email@mail.com"
 ```
 
@@ -91,6 +106,7 @@ You can configure Git to handle line endings automatically so you can collaborat
     ```
 
 #### c. Check Global Settings
+
 ```shell
  git config --global --list
 ```
@@ -103,7 +119,7 @@ You can configure Git to handle line endings automatically so you can collaborat
 Git stores all of its repository data in a hidden `.git` directory.
 
 > **Use case:**
-Two researchers/programmers are developing code to analyse the inflammation data used in the Python session.
+Two researchers/programmers are developing code to analyse clinical data.
 
 
 #### a. Make a Directory on the Desktop
@@ -129,6 +145,8 @@ git status
 > Explanation: initialising (creating .git files) for every folder inside a repo is redundant and bad practice.
 > Git uses this special subdirectory to store all the information about the project, including all files and sub-directories located within the project’s directory. If we ever delete the .git subdirectory, we will lose the project’s history.
 
+1st BREAK : 14:30-14:45
+
 
 ### 3. START TRACKING CHANGES [10 min]
 > **Key Points:** How git track changes and the modify-add-commit cycle.
@@ -151,31 +169,35 @@ git status
         mean = np.mean(data)
         return mean
 
-    def main():
-        # Sample dataset as a numpy array
-        data = np.array([10, 20, 30, 40, 50])
-
-        # Calculate the mean
-        mean = calculate_mean(data)
-
-        print(f"Mean of the dataset: {mean}")
-
-    if __name__ == "__main__":
-        main()
     ```
 * Check that the file is in the repository
     ```shell
      ls
     ```
-#### b. Test the Script
+#### b. Test the Script (bonus for the ones that have Python installed)
+- Add this part below the python function to be run at the terminal 
 
-```shell
-    # check Python is accessible from Git bash
-     python --version
+```python
+def main():
+    # Sample dataset as a numpy array
+    data = np.array([10, 20, 30, 40, 50])
+
+    # Calculate the mean
+    mean = calculate_mean(data)
+
+    print(f"Mean of the dataset: {mean}")
+
+if __name__ == "__main__":
+    main()
 ```
 
 ```shell
- python calculate_mean.py
+    # check Python is accessible from Git bash
+     python3 --version
+```
+
+```shell
+ python3 calculate_mean.py
 ```
 or 
 
@@ -187,7 +209,7 @@ or
 pip install numpy
 ```
 
-*introduce another change to check that output a correct mean value with a known dataset , data=np.array([10,20])
+**(for the python users)**introduce another change to check that the output is a correct mean value with a known dataset , data=np.array([10,20])
 
 
 #### c. Check Git Status
@@ -224,11 +246,12 @@ git commit -m "create  script calculate_mean.py"
 > A good commit message is short (< 50 characters), and completes the sentence: 'This will..' **message** [use slide] 
 
 
-
+**going to slides for explanation**
 > Explanation of **staging**. The working directory, the staging area, and the git history. `git add` is used to define which files we want to commit. `git add` specifies what changes to stage; `git commit` takes a snapshot of the changes and writes them to the repository's history. [Use illustration]
 
 > Explanation of **modify-add-commit** cycle. [Use illustration] , go to a slide and show what adds and commit means graphically 
 
+**First BREAK**
 
 > **Questions?**
 
@@ -239,7 +262,7 @@ git commit -m "create  script calculate_mean.py"
 * Add  a docstring bellow the calculate_mean function:
 
     ```python
-    """ This function computes the mean of a one dimensional array.
+    """ This function computes the mean of an array.
     Input: An one dimensional array
     Output: The mean of the array
     """
@@ -324,7 +347,7 @@ git status
 git commit -m "add some treatments for patients"
 ```
 
-> display a tree of the directory to see the behavious so far :
+> display a tree of the directory to see the behaviour so far :
 
 ```bash
 sudo apt-get install tree
@@ -335,8 +358,9 @@ or in git bash
 ```bash
 cmd //c tree //a
 ```
-
+**go to slides to explain**
 > Go again to the illustration to explain 
+
 ### 6. IGNORING THINGS [6 mins]
 
 Say you have files you don't want to tack with git.
@@ -390,13 +414,16 @@ git commit -m "Ignoring data files"
 git status --ignored
 ```
 
-> come back to the ilustration
+**go to slides to explain**
 
 > **Questions?**
 
 -------
 
 **FIRST BREAK** 
+
+
+
 
 -------
 
@@ -475,7 +502,7 @@ git diff commit-id HEAD calculate_mean.py # [use ID for first commit]
 > BEFORE THAT: Add and commit the changes calculate_mean.py. 
 
 ```shell
-git calculate_mean.py
+git add calculate_mean.py
 git commit -m "add usage"
 ```
 
@@ -582,7 +609,13 @@ git checkout commit-id calculate_mean.py
     ```
 --------
 
+**Concluding remarks**
+> Recapitulate what we have seen so far and end lesson 
+
+**End of lesson # 1**
+
 ## PART 3
+Day 2, start at 10:00 
 
 ### 8. REMOTES IN GITHUB [20 min]
 
@@ -593,13 +626,13 @@ git checkout commit-id calculate_mean.py
 #### a. Create GitHub Repo 
 > Go to Github and create an empty and public repository called `patients-analysis`.
 
-- Repo description: *analysis of treatments for inflammation*
+- Repo description: *analysis of different clinical treatments*
 
 #### b. Add Remote to Local Repo
 
 ##### b0. Conect to GitHub via SSH [Technical Break, 30 min]
 
-> Recently, GitHub requires authentification via SSH to do pulls an pushes, but not for cloning. **Use illustrations** to explain what a SSH connection entitles.
+> Recently, GitHub requires 2F-A authentification via SSH to do pulls an pushes, but not for cloning. **Use illustrations** to explain what a SSH connection entitles.
 
 To connect via SSH do the following:
 
@@ -610,7 +643,7 @@ To connect via SSH do the following:
     cd ~
     # create key
     ssh-keygen -t ed25519 -C "your_email@example.com"
-    # save to the default location and file name: ~/.ssh/id_ed25519 , or put a specific address, relative to where you are :  ./Desktop/carpentry
+    # save to the default location and file name: ~/.ssh/id_ed25519 , or put a specific address,  using an absolute path: /home/linigodelacruz/.ssh/NAME-OF-THE-KEY
     ```
 * Check the keys have been created
 
@@ -625,7 +658,7 @@ To connect via SSH do the following:
     eval "$(ssh-agent -s)"
     
     # add private key
-    ssh-add ~/.ssh/id_ed25519
+    ssh-add ~/.ssh/id_ed25519 
     ```
     > Instruct SSH to use key files in different locations: `ssh -i <path/private/keyfile>`
 
@@ -635,12 +668,12 @@ Mac and Linux user don't have to worry about this.
 * Copy public key to GitHub:
 
     ```shell
-    clip < .ssh/id_ed25519.pub
+    clip < ~/.ssh/id_ed25519.pub
     ```
     > if clip does not work then use 
     
     ```shell
-    cat  .ssh/id_ed25519.pub # copy its content to github 
+    cat  ~/.ssh/id_ed25519.pub # copy its content to github 
     ```
     
 
@@ -658,15 +691,24 @@ Profile > Settings > SSH and GPG keys > New SSH key > Add SSH key
 
 > Check the info on (Troubleshooting SSH[https://docs.github.com/en/authentication/troubleshooting-ssh]) for GitHub.
 
+1st BREAK 11:00-11:15
+
+> Invite several participants as collaborators to the repository `workshop-check-in`
+
 ####   b1 Add the remote 
 
-Move back to the repo directory: `~/Desktop/
+Move back to the repo directory: 
+```bash
+cd ~/Desktop/patients
+```
 > In your local repository (on the terminal), add the remote repository and push the content.
 
 * Connect to remote
     ```shell
     git remote add origin git@github.com:<user-name>/<repo-name>.git
     ```
+>> Note in Github the link of the remote is provided through the SSH protocol !!
+
 
 * Check that remote was added
     ```shell
@@ -688,9 +730,9 @@ Move back to the repo directory: `~/Desktop/
 ### d. Exploring the GitHub GUI (optional)
 
 ----
-**SECOND BREAK**
 
-> Invite several participants as collaborators to the repository `workshop-check-in`
+
+12:30 - 13:30 LUNCH 
 
 -------
 
@@ -698,16 +740,19 @@ Move back to the repo directory: `~/Desktop/
 
 ### 9. CONFLICTS (Demo) [15 min]
 
-> Explanation of when a conflict can happen: "A conflict arises when two collaborators make changes to the same line in a file, or when a file has been deleted by one collaborator, but edited by  another."
+> Explanation of when a conflict can happen: "A conflict arises when two collaborators make changes to the same line in a file, or if ones tries to push their changes without having the most updated version from the remote server, or when a file has been deleted by one collaborator, but edited by another."
 
 > Demo using the `calculate_mean.py`. A helper and the Instructor will create a conflict and present a solution.
 
 #### a. Create conflict
+situation: helper tries to push a change to an already updated remote , without doing the pull first 
 
 * [Instructor]: explains how to add collaborators to a repository in GitHub. He adds helper as collaborator.
-* [Helper]: pulls instructor's repo; edits `calculate_means.py` and modifies the print line as follows: `print(count, 'total lines in standard input)`. 
-* [Helper]: Adds, commits and pushes changes to remote.
-* [Instructor]: edits local `calculate_mean.py`; modifies the print line as follows: `print('We found', count, 'lines in standard input)` Add, commit and try to **pull**.
+* [Helper]: Clone instructor's repo; edits `calculate_mean.py` 
+* [Instructor]: edits local `calculate_mean.py`; modifies the print line as follows: `This function calculates the mean of an array, but it is silly because it uses a different numpy function`. Add, commit and **pull** and **push** the changes.
+* [Helper]: Modifies the docstring line as follows: `This function computes the mean of a **one-dimensional** array` Adds, commits and pushes changes to remote. 
+The conflict arises because the helper needs to first pull and update its local copy with what is being updated in the remote. 
+
 
 #### b. Solve conflict 
 * [Instructor]: explains why the conflict occurred and how to solve it by  editing `calculate_mean.py` and deciding what changes to keep. Then: add, commit,and  **push**.
@@ -731,11 +776,11 @@ git clone git@github.com:leilaicruz/workshop-checkin.git
 
 ```shell
 cd workshop-check-in
-cp check-in/template.md check-in/<my-nickname-file>.md 
+cp check-in/template.md check-in/<my-name-file>.md 
 ```
 
 #### c. Edit your Check-in file 
-> Edit `<my-name-file>.md` and change the content. You'll see some hints
+> Edit `<my-name-file>.md` and change the content. Write from which university are you from and what is the field of your PhD. 
 
 ```shell
 nano check-in/<my-name-file>.md
@@ -745,7 +790,7 @@ nano check-in/<my-name-file>.md
 
 A basic collaborative workflow using git is:
 
-* "Update the local repo with git `pull origin main`,"
+* "Update the local repo with `git pull origin main`,"
 * "Make changes and stage them with `git add`,"
 * "Commit changes with `git commit -m`, and"
 * "Upload the changes to GitHub with `git push origin main`"
@@ -755,12 +800,15 @@ A basic collaborative workflow using git is:
 ```shell
 git pull origin main
 git add .
-git commit -m "check manuel in"
+git commit -m "check leila in"
 git push origin main #[This works only if participants are added to the repository as collaborators]
 ```
-> Ask a participant to push their changes to remote, and show the changes int the GitHuh GUI.
 
-#### e. [Optional] Demo Create branches and Pull requests 
+
+**Show case for the Gitlab users how you can create a repo and add it as a remote in Gitlab** (if there is time, otherwise send links on how to do it)
+
+
+#### e. [Optional] Demo Create branches and Pull requests (if there is time)
 
 #### Create a branch from what was pull from main 
 
@@ -771,7 +819,7 @@ git checkout leila71
 ```
 
 #### c. Edit your Check-in file 
-> Edit `<my-name-file>.md` and change the content. You'll see some hints
+> Edit `<my-name-file>.md` and change the content. Write from which university are you from and what is the field of your PhD. 
 
 ```shell
 nano check-in/<my-name-file>.md
