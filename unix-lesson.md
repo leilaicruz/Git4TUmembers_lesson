@@ -8,7 +8,18 @@ Lesson: 11:45-12:30
 
 Lunch: 12:30 - 13:30
 
+## Preparation in my terminal 
 
+- Write
+
+```bash
+cd /mnt/c/Users/linigodelacruz/Desktop/
+```
+- Remove everything that is front '$' for a better view of commands:
+
+```bash
+export PS1='$ '
+```
 
 # Description of the shell before commands
 The shell typically uses $ as the prompt, but may use a different symbol. In the examples for this lesson, we’ll show the prompt as $. Most importantly, do not type the prompt when typing commands. Only type the command that follows the prompt. This rule applies both in these lessons and in lessons from other sources. Also note that after you type a command, you have to press the Enter key to execute it.

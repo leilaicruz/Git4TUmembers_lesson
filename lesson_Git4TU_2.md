@@ -26,7 +26,7 @@ $ tail -f ~/.bash_history
 - Write
 
 ```bash
-/mnt/c/Users/linigodelacruz/Desktop/
+cd /mnt/c/Users/linigodelacruz/Desktop/
 ```
 - Remove everything that is front '$' for a better view of commands:
 
