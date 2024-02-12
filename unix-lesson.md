@@ -103,6 +103,23 @@ Thesis
       |── raw_data_processing.py
 manuscript.tex
 
+## Build the file structure
+
+```bash
+mkdir Thesis
+cd Thesis
+mkdir data docs scripts
+cd data
+touch a.dat b.dat c.dat 
+cd ..
+cd scripts
+touch raw_data_processing.py
+cd ..
+touch manuscript.tex
+```
+
+- check with `tree.` 
+
 ## Moving files and directories
 
 - Change the name of the a.dat data file into a more informative name : optical_absorbance_600nm.dat 
@@ -112,7 +129,7 @@ mv data/a.dat data/optical_absorbance_600nm.dat
 ```
     - we just rename the a.dat file 
 
-## Copying files 
+## Copying files , copy the manuscript.tex to inside the docs folder
 
 ```bash
 cp manuscript.tex data/docs/manuscript.tex

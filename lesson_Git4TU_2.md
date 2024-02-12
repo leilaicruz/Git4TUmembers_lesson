@@ -7,6 +7,7 @@
 These lecture notes for the beginner-level of one of the lessons of the [Software Carpentry](https://swcarpentry.github.io/git-novice/). These notes assume the use of [Git terminal for Windows](https://gitforwindows.org/).
 The context and flow of this lesson have been addapted to better fit the audience.
 
+13:30-13:45 Git intro 
 13:45 START
 
 
@@ -151,8 +152,8 @@ git status
 ### 3. START TRACKING CHANGES [10 min]
 > **Key Points:** How git track changes and the modify-add-commit cycle.
 
-#### a. Create a Python Script to Count Lines 
-> The script will count lines from the standard input. For this Python must be accessible from the terminal.
+#### a. Create a Python Script to compute the mean of a dataset 
+> The script will compute the mean of an array. 
 
 
 * Create and modify file
@@ -174,8 +175,10 @@ git status
     ```shell
      ls
     ```
-#### b. Test the Script (bonus for the ones that have Python installed)
-- Add this part below the python function to be run at the terminal 
+#### b. Test the Script (bonus for the ones that have Python installed) For this Python must be accessible from the terminal.
+- Add this part below the python function to be run at the terminal
+
+- **ask the audience how many people will like this for demostration or I skip it**
 
 ```python
 def main():
@@ -251,7 +254,6 @@ git commit -m "create  script calculate_mean.py"
 
 > Explanation of **modify-add-commit** cycle. [Use illustration] , go to a slide and show what adds and commit means graphically 
 
-**First BREAK**
 
 > **Questions?**
 
@@ -359,7 +361,7 @@ or in git bash
 cmd //c tree //a
 ```
 **go to slides to explain**
-> Go again to the illustration to explain 
+> Go again to the illustration to visually show the history of the project
 
 ### 6. IGNORING THINGS [6 mins]
 
@@ -416,11 +418,91 @@ git status --ignored
 
 **go to slides to explain**
 
+--------------------
+
+### EXERCISE: Create Repository and Track Changes [15 mins]
+
+#### a. Explain exercise in plenary
+
+**Exercise description (slides):** 
+
+#### b. Helpers and partcipants go to a Breakout session
+
+> Suggestion: Share your screeen, and ask participats to try things first by themselves, then show them how to do it. Give them about 1 minute per activity `[1-6]` and then show them the answers one at the time. 
+
+#### c. Answers
+
+* **Create new repository, use the modify-add-commit cycle, and recover older versions.**
+
+    1. Create and initialize a repository called ‘my-repo’. 
+
+```shell
+mkdr my-repo
+cd my-repo/
+git init
+```
+    2. Create a files `research.txt` with the sentence: **Science is awesome**
+
+```shell
+nano research.txt
+```
+        Inside the file type the following and save changes:
+```shell
+Science is awesome
+```
+    3. Add and commit the changes. Remember to use a meaning message.
+        
+```shell
+git add research.txt
+git commit -m "add awesome science"
+```
+    4. Change sentence in ‘research.txt’ to: **Science is messy**
+```shell
+nano research.txt
+```
+        Change text to this and save changes:
+```shell
+Science is messy
+```
+    5. Add and commit.
+```shell
+git add research.txt
+git commit -m "change to messy science"
+```
+    <!-- 6. Revert changes to the very first version of ‘research.txt’, and commit.
+        ```shell
+        git log --oneline # find and copy ID of the firts commit
+        git checkout <commit-ID> research.txt # revert changes 
+        cat reseach.txt # check version has been recovered
+        git commit -m "recover awesome science" # commit recovered version
+        ``` -->
+    6. Create a folder called raw-data
+
+```shell
+mkdir raw-data/
+```
+7. Ignore the raw-data folder and ignore it 
+
+```shell
+touch .gitignore 
+nano .gitignore
+    raw-data/
+```
+
+
+* **Check your history log – you should have 3 commits**
+
+    ```shell
+    git log # print full log
+    git log --graph # print log as text-graph
+    git log --oneline # print short version of log
+    ```
+
 > **Questions?**
 
 -------
 
-**FIRST BREAK** 
+**13:45- 16:00 BREAK** 
 
 
 
@@ -493,7 +575,6 @@ git log --oneline # [copy an ID to compare]
 git diff commit-id calculate_mean.py # [use ID for first commit]
 git diff commit-id HEAD calculate_mean.py # [use ID for first commit]
 ```
-> Wrap up this section by showing an illustration of the git history tree
 
 ### 7. REVERTING CHANGES [9 min]
 
@@ -518,104 +599,37 @@ git checkout <id--commit> calculate_mean.py # [will revert changes, use firts co
 cat calculate_mean.py
 ```
 
-#### b. Restore the version without any Docstring [Optional]
-
-> **Additional example, used only if on schedule. Ask particpants to do them by themselves.**
-
-```shell
-git checkout commit-id calculate_mean.py  
-```
+#### b. Going back to the newest version
 
 > **Changes go to the staging area; they are not committed.** However, we always can go back to any version we have committed. To go back to the newest version, check out to HEAD.
 
 * check out to HEAD
 
-    ```shell
-    git checkout HEAD calculate_mean.py 
-    cat calculate_mean.py [notice the file is back to the newest committed version]
-    ```
+```shell
+git checkout HEAD calculate_mean.py 
+cat calculate_mean.py [notice the file is back to the newest committed version]
+```
 
 * Add and Commit the newest version
 
-    ```shell
-    git add calculate_mean.py 
-    git commit -m "update author's name"
-    ```
-------
+```shell
+git add calculate_mean.py 
+git commit -m "usage message added"
+```
 
-### EXERCISE: Create Repository and Track Changes [15 mins]
-
-#### a. Explain exercise in plenary
-
-**Exercise description (slides):** https://docs.google.com/presentation/d/17vM2uc_wvCcw7mVMqsNud71K_QZTlcXM4rD2DygkAtk/edit?usp=sharing
-
-#### b. Helpers and partcipants go to a Breakout session
-
-> Suggestion: Share your screeen, and ask participats to try things first by themselves, then show them how to do it. Give them about 1 minute per activity `[1-6]` and then show them the answers one at the time. 
-
-#### c. Answers
-
-* **Create new repository, use the modify-add-commit cycle, and recover older versions.**
-
-    1. Create and initialize a repository called ‘my-repo’. 
-
-        ```shell
-        mkdr my-repo
-        cd my-repo/
-        git init
-        ```
-    2. Create a files `research.txt` with the sentence: **Science is awesome**
-
-        ```shell
-        nano research.txt
-        ```
-        Inside the file type the following and save changes:
-        ```shell
-        Science is awesome
-        ```
-    3. Add and commit the changes. Remember to use a meaning message.
-        
-        ```shell
-        git add research.txt
-        git commit -m "add awesome science"
-        ```
-    4. Change sentence in ‘research.txt’ to: **Science is messy**
-        ```shell
-        nano research.txt
-        ```
-        Change text to this and save changes:
-        ```shell
-        Science is messy
-        ```
-    5. Add and commit.
-        ```shell
-        git add research.txt
-        git commit -m "change to messy science"
-        ```
-    6. Revert changes to the very first version of ‘research.txt’, and commit.
-        ```shell
-        git log --oneline # find and copy ID of the firts commit
-        git checkout <commit-ID> research.txt # revert changes 
-        cat reseach.txt # check version has been recovered
-        git commit -m "recover awesome science" # commit recovered version
-        ```
-
-* **Check your history log – you should have 3 commits**
-
-    ```shell
-    git log # print full log
-    git log --graph # print log as text-graph
-    git log --oneline # print short version of log
-    ```
---------
 
 **Concluding remarks**
 > Recapitulate what we have seen so far and end lesson 
 
+
+
+
 **End of lesson # 1**
 
 ## PART 3
-Day 2, start at 10:00 
+Day 2, start at 10:00 with Intro
+
+10:15- Lesson start 
 
 ### 8. REMOTES IN GITHUB [20 min]
 
@@ -698,6 +712,7 @@ Profile > Settings > SSH and GPG keys > New SSH key > Add SSH key
 ####   b1 Add the remote 
 
 Move back to the repo directory: 
+
 ```bash
 cd ~/Desktop/patients
 ```
@@ -750,7 +765,7 @@ situation: helper tries to push a change to an already updated remote , without 
 * [Instructor]: explains how to add collaborators to a repository in GitHub. He adds helper as collaborator.
 * [Helper]: Clone instructor's repo; edits `calculate_mean.py` 
 * [Instructor]: edits local `calculate_mean.py`; modifies the print line as follows: `This function calculates the mean of an array, but it is silly because it uses a different numpy function`. Add, commit and **pull** and **push** the changes.
-* [Helper]: Modifies the docstring line as follows: `This function computes the mean of a **one-dimensional** array` Adds, commits and pushes changes to remote. 
+* [Helper]: Modifies the docstring line as follows: `This function computes the mean of a **one-dimensional** array` Adds, commits and **pushes** changes to remote. 
 The conflict arises because the helper needs to first pull and update its local copy with what is being updated in the remote. 
 
 
