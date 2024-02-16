@@ -427,6 +427,8 @@ git status --ignored
 
 --------------------
 
+# Time : Around 15:20-30
+
 ### EXERCISE: Create Repository and Track Changes [15 mins]
 
 #### a. Explain exercise in plenary
@@ -509,7 +511,7 @@ nano .gitignore
 
 -------
 
-**13:45- 16:00 BREAK** 
+**15:45- 16:00 BREAK II** 
 
 
 
@@ -614,8 +616,10 @@ cat calculate_mean.py
 
 ```shell
 git checkout HEAD calculate_mean.py 
-cat calculate_mean.py [notice the file is back to the newest committed version]
+cat calculate_mean.py 
 ```
+
+- [notice the file is back to the newest committed version]
 
 * Add and Commit the newest version
 
