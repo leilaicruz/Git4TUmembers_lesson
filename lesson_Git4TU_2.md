@@ -16,12 +16,19 @@ To set up the command history on two terminals do the following:
 
 1. On main terminal:
 ```bash
-$ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 ```
 2. On second (history) terminal:
 ```bash
-$ tail -f ~/.bash_history
+tail -f ~/.bash_history
 ```
+3. If there is some history already displayed, and you would like to erase it , and start from scratch 
+
+```bash
+history -c
+```
+This command will erase all the commands you've previously executed in your terminal.
+
 ## Preparation in my terminal 
 
 - Write
