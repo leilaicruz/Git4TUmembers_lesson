@@ -793,20 +793,25 @@ cd ~/Desktop/patients
 
 > Explanation of when a conflict can happen: "A conflict arises when two collaborators make changes to the same line in a file, or if ones tries to push their changes without having the most updated version from the remote server, or when a file has been deleted by one collaborator, but edited by another."
 
+> go to slides to show the conflic situation
+
 > Demo using the `calculate_mean.py`. A helper and the Instructor will create a conflict and present a solution.
 
 #### a. Create conflict
+
 situation: helper tries to push a change to an already updated remote , without doing the pull first 
 
 * [Instructor]: explains how to add collaborators to a repository in GitHub. He adds helper as collaborator.
-* [Helper]: Clone instructor's repo; edits `calculate_mean.py` 
 * [Instructor]: edits local `calculate_mean.py`; modifies the print line as follows: `This function calculates the mean of an array, but it is silly because it uses a different numpy function`. Add, commit and **pull** and **push** the changes.
+
+* [Helper]: Clone instructor's repo; edits `calculate_mean.py` 
 * [Helper]: Modifies the docstring line as follows: `This function computes the mean of a **one-dimensional** array` Adds, commits and **pushes** changes to remote. 
 The conflict arises because the helper needs to first pull and update its local copy with what is being updated in the remote. 
 
 
 #### b. Solve conflict 
-* [Instructor]: explains why the conflict occurred and how to solve it by  editing `calculate_mean.py` and deciding what changes to keep. Then: add, commit,and  **push**.
+* [Instructor/helper]: explains why the conflict occurred and how to solve it by  editing `calculate_mean.py` and deciding what changes to keep. Then: add, commit,and  **push**.
+
 
 ### 10. COLLABORATING  [15 min]
 
