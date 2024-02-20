@@ -630,8 +630,11 @@ git log --oneline # [copy ID of "description input"]
 
 ```shell
 git checkout <id--commit> calculate_mean.py # [will revert changes, use firts commit ID]
+git checkout HEAD~2 calculate_mean.py
 cat calculate_mean.py
 ```
+
+> git checkout will move the HEAD to the <id--commit>
 
 #### b. Going back to the newest version
 
