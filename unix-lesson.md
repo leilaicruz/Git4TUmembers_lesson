@@ -59,6 +59,17 @@ This might happen if the command was mis-typed or if the program corresponding t
 pwd
 ```
 
+## Parent directory
+
+```bash
+cd ../
+```
+
+```bash
+ls -a 
+```
+> it will show the hidden folders ./ and ../
+
 ## Home directory 
 
 ```bash
@@ -95,6 +106,8 @@ cd --help
 
 ### Exercise : 
 https://swcarpentry.github.io/shell-novice/02-filedir.html#relative-path-resolution
+
+- go to slides 
 
 Break : 15 mins
 
