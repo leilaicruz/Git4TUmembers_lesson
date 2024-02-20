@@ -62,17 +62,17 @@ Useful shortcuts for the App Windows Terminal (Preview) on Windows 10.
 
 > Presentation notes 
 
-### 1.  SETTING UP GIT (Lecture begins) [6 min]
+### 1.  SETTING UP GIT : Introduce yourself to Git (Lecture begins) [6 min]
 > Sometimes, the shortcut on the Windows menu for Git Bash won't work. In such a case: go to the installation folder (usually `C:/Git`) and double-click on `git-bash.exe` 
 
 > **Key points:**
 Use `git config` with the `--global` option to configure a user name, email address, etc.
 
-#### Git Command Syntax
+#### Test that Git is installed in your comouter
 
-`git <command> [options]`
+`git --version`
 
-> Explian syntax using "how to get help" as example.
+> Explain syntax using "how to get help" as example.
 
 * How to Get Help with the Commands 
 
@@ -132,15 +132,17 @@ Two researchers/programmers are developing code to analyse clinical data.
 
 #### a. Make a Directory on the Desktop
 ```shell
- mkdir ~/Desktop/patients
+ mkdir patients
 ```
 
 #### b. Initialize the Repository
 
 ```shell
-cd ./patients/
+cd patients/
 git init
 ```
+> Git tells us that all went well in the last line after hitting `git init`.
+> So , here you have created your first git repository 
 
 > Repository, or Repo, is  another word for project 
 
@@ -150,8 +152,12 @@ ls -a
 git status
 ```
 
-> Explanation: initialising (creating .git files) for every folder inside a repo is redundant and bad practice.
+> This hidden folder represents the Git repository. Its job is to store everything related to your project, including all commits, the project history, configuration files, what have you. It also stores any specific Git configuration and settings that you might have enabled for this particular project.
+
+> Initialising (creating .git files) for every folder inside a repo is redundant and bad practice.
+
 > Git uses this special subdirectory to store all the information about the project, including all files and sub-directories located within the project’s directory. If we ever delete the .git subdirectory, we will lose the project’s history.
+
 
 1st BREAK : 14:30-14:45
 
@@ -160,6 +166,7 @@ git status
 > **Key Points:** How git track changes and the modify-add-commit cycle.
 
 #### a. Create a Python Script to compute the mean of a dataset 
+
 > The script will compute the mean of an array. 
 
 
@@ -179,10 +186,12 @@ git status
 
     ```
 * Check that the file is in the repository
-    ```shell
-     ls
-    ```
-#### b. Test the Script (bonus for the ones that have Python installed) For this Python must be accessible from the terminal.
+
+```shell
+ ls
+```
+
+<!-- #### b. Test the Script (bonus for the ones that have Python installed) For this Python must be accessible from the terminal.
 - Add this part below the python function to be run at the terminal
 
 - **ask the audience how many people will like this for demostration or I skip it**
@@ -219,15 +228,18 @@ or
 pip install numpy
 ```
 
-**(for the python users)**introduce another change to check that the output is a correct mean value with a known dataset , data=np.array([10,20])
+**(for the python users)**introduce another change to check that the output is a correct mean value with a known dataset , data=np.array([10,20]) -->
 
 
 #### c. Check Git Status
 ```shell
  git status
 ```
+> The git status command is often referred to as a “safe” command—in that it simply asks the repository for information to display and in no way affects the repository (like, say, creating a commit would). This means that you can and should run git status often. We recommend running it before running
+any other Git command.
 
 #### d. Start Tacking a File Using git add-commit
+
 ```shell
  git add calculate_mean.py
 ```
@@ -245,18 +257,21 @@ pip install numpy
 The file will have its original line endings in your working directory |**
 
 #### e. Commit Changes 
-Creates a snapshot of the changes in the repository's history three.
+Creates a snapshot of the changes in the repository's history tree.
 
 ```shell
-git commit -m "create  script calculate_mean.py"
+git commit -m "create script calculate_mean.py"
 ```
 
 > `git commit -a` or `--all` "stage all changes and write them to history"
+
+> the commit of a file is only done if only if the file is added to the stage area 
 
 > A good commit message is short (< 50 characters), and completes the sentence: 'This will..' **message** [use slide] 
 
 
 **going to slides for explanation**
+
 > Explanation of **staging**. The working directory, the staging area, and the git history. `git add` is used to define which files we want to commit. `git add` specifies what changes to stage; `git commit` takes a snapshot of the changes and writes them to the repository's history. [Use illustration]
 
 > Explanation of **modify-add-commit** cycle. [Use illustration] , go to a slide and show what adds and commit means graphically 
@@ -280,6 +295,7 @@ git commit -m "create  script calculate_mean.py"
     ```shell
      git status
     ```
+    > 
     > Explanation: Notice that modified files are automatically tracked by Git, however they are not automatically committed. This is desirable because is up to the user to decide when and what to commit to the repository's history.
     
 
@@ -368,11 +384,12 @@ or in git bash
 cmd //c tree //a
 ```
 **go to slides to explain**
+
 > Go again to the illustration to visually show the history of the project
 
 ### 6. IGNORING THINGS [6 mins]
 
-Say you have files you don't want to tack with git.
+Say you have files you don't want to track with git.
 
 > We'll create some fictitious data files for now.
 
@@ -427,7 +444,7 @@ git status --ignored
 
 --------------------
 
-# Time : Around 15:20-30
+# Time : Around 15:20-30 to 15:45 
 
 ### EXERCISE: Create Repository and Track Changes [15 mins]
 
@@ -435,7 +452,7 @@ git status --ignored
 
 **Exercise description (slides):** 
 
-#### b. Helpers and partcipants go to a Breakout session
+#### b. Helpers and participants go to a Breakout session
 
 > Suggestion: Share your screeen, and ask participats to try things first by themselves, then show them how to do it. Give them about 1 minute per activity `[1-6]` and then show them the answers one at the time. 
 
@@ -443,41 +460,49 @@ git status --ignored
 
 * **Create new repository, use the modify-add-commit cycle, and recover older versions.**
 
-    1. Create and initialize a repository called ‘my-repo’. 
+1. Create and initialize a repository called ‘my-repo’. 
 
 ```shell
-mkdr my-repo
+mkdir my-repo
 cd my-repo/
 git init
 ```
-    2. Create a files `research.txt` with the sentence: **Science is awesome**
+2. Create a files `research.txt` with the sentence: **Science is awesome**
 
 ```shell
 nano research.txt
 ```
-        Inside the file type the following and save changes:
+> Inside the file type the following and save changes:
+
 ```shell
 Science is awesome
 ```
-    3. Add and commit the changes. Remember to use a meaning message.
+
+3. Add and commit the changes. Remember to use a meaning message.
         
 ```shell
 git add research.txt
 git commit -m "add awesome science"
 ```
-    4. Change sentence in ‘research.txt’ to: **Science is messy**
+
+4. Change sentence in ‘research.txt’ to: **Science is messy**
+
 ```shell
 nano research.txt
 ```
-        Change text to this and save changes:
+> Change text to this and save changes:
+
 ```shell
 Science is messy
 ```
-    5. Add and commit.
+
+5. Add and commit.
+
 ```shell
 git add research.txt
 git commit -m "change to messy science"
 ```
+
     <!-- 6. Revert changes to the very first version of ‘research.txt’, and commit.
         ```shell
         git log --oneline # find and copy ID of the firts commit
@@ -499,13 +524,13 @@ nano .gitignore
 ```
 
 
-* **Check your history log – you should have 3 commits**
+8. **Check your history log – you should have 3 commits**
 
-    ```shell
-    git log # print full log
-    git log --graph # print log as text-graph
-    git log --oneline # print short version of log
-    ```
+```shell
+git log # print full log
+git log --graph # print log as text-graph
+git log --oneline # print short version of log
+```
 
 > **Questions?**
 

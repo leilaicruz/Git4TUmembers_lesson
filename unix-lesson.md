@@ -10,7 +10,7 @@ Lunch: 12:30 - 13:30
 
 ## Preparation in my terminal 
 
-- Write
+- Write, if I use the terminal of the WSL 
 
 ```bash
 cd /mnt/c/Users/linigodelacruz/Desktop/
@@ -19,6 +19,17 @@ cd /mnt/c/Users/linigodelacruz/Desktop/
 
 ```bash
 export PS1='$ '
+```
+
+To set up the command history on two terminals do the following:
+
+1. On main terminal:
+```bash
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+```
+2. On second (history) terminal:
+```bash
+tail -f ~/.bash_history
 ```
 
 # Description of the shell before commands
@@ -51,6 +62,7 @@ pwd
 ## Home directory 
 
 ```bash
+cd ~ 
 cd 
 ```
 
@@ -150,3 +162,7 @@ rm manuscript.tex
 ```bash
 rm -r Thesis Thesis-backup
 ```
+
+## End of the lesson : 12:30 
+
+## Lunch 
