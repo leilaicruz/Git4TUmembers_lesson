@@ -522,9 +522,16 @@ touch .gitignore
 nano .gitignore
     raw-data/
 ```
+8. Add and commit the changes
 
+```bash
 
-8. **Check your history log – you should have 3 commits**
+git add .gitignore
+git commit -m “Added gitignore to folder”
+
+```
+
+9. **Check your history log – you should have 3 commits**
 
 ```shell
 git log # print full log
