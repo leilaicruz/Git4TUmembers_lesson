@@ -2,7 +2,7 @@
 
 **Instructor:** *Leila Inigo de la Cruz*
 
-**Last update:** *25-10-2023*
+
 
 These lecture notes for the beginner-level of one of the lessons of the [Software Carpentry](https://swcarpentry.github.io/git-novice/). These notes assume the use of [Git terminal for Windows](https://gitforwindows.org/).
 The context and flow of this lesson have been addapted to better fit the audience.
@@ -62,13 +62,13 @@ Useful shortcuts for the App Windows Terminal (Preview) on Windows 10.
 
 > Presentation notes 
 
-### 1.  SETTING UP GIT : Introduce yourself to Git (Lecture begins) [6 min]
+### 1.  SETTING UP GIT : (Lecture begins) [6 min]
 > Sometimes, the shortcut on the Windows menu for Git Bash won't work. In such a case: go to the installation folder (usually `C:/Git`) and double-click on `git-bash.exe` 
 
 > **Key points:**
 Use `git config` with the `--global` option to configure a user name, email address, etc.
 
-#### Test that Git is installed in your comouter
+#### Test that Git is installed in your computer
 
 `git --version`
 
@@ -79,7 +79,7 @@ Use `git config` with the `--global` option to configure a user name, email addr
     * show help for all commands: `git --help`
     * show help for specific command: e.g., `git init -h`
 
-#### a. Setting up a Username and Email
+#### a. Setting up a Username and Email - Introduce yourself to Git
 
 - For the ones that already have done that , you can always check your global configuration by typing:
 
@@ -152,11 +152,14 @@ ls -a
 git status
 ```
 
+> The **git status** command is often referred to as a “safe” command—in that it simply asks the repository for information to display and in no way affects the repository (like, say, creating a commit would). This means that you can and should run git status often. We recommend running it before running
+any other Git command.
+
 > This hidden folder represents the Git repository. Its job is to store everything related to your project, including all commits, the project history, configuration files, what have you. It also stores any specific Git configuration and settings that you might have enabled for this particular project.
 
 > Initialising (creating .git files) for every folder inside a repo is redundant and bad practice.
 
-> Git uses this special subdirectory to store all the information about the project, including all files and sub-directories located within the project’s directory. If we ever delete the .git subdirectory, we will lose the project’s history.
+>  If we ever delete the .git subdirectory, we will lose the project’s history.
 
 
 1st BREAK : 14:30-14:45
@@ -270,7 +273,7 @@ git commit -m "create script calculate_mean.py"
 > A good commit message is short (< 50 characters), and completes the sentence: 'This will..' **message** [use slide] 
 
 
-**going to slides for explanation**
+**going to slides for explanation and short exercise in plenum**
 
 > Explanation of **staging**. The working directory, the staging area, and the git history. `git add` is used to define which files we want to commit. `git add` specifies what changes to stage; `git commit` takes a snapshot of the changes and writes them to the repository's history. [Use illustration]
 
@@ -718,7 +721,7 @@ To connect via SSH do the following:
     eval "$(ssh-agent -s)"
     
     # add private key
-    ssh-add ~/.ssh/id_ed25519 
+    ssh-add .ssh/workshop 
     ```
     > Instruct SSH to use key files in different locations: `ssh -i <path/private/keyfile>`
 
@@ -812,7 +815,7 @@ cd ~/Desktop/patients
 situation: helper tries to push a change to an already updated remote , without doing the pull first 
 
 * [Instructor]: explains how to add collaborators to a repository in GitHub. He adds helper as collaborator.
-* [Instructor]: edits local `calculate_mean.py`; modifies the print line as follows: `This function calculates the mean of an array, but it is silly because it uses a different numpy function`. Add, commit and **pull** and **push** the changes.
+* [Instructor]: edits local `calculate_mean.py`; modifies the docstring line as follows: `This function calculates the mean of an array, but it is silly because it uses a different numpy function`. Add, commit and **pull** and **push** the changes.
 
 * [Helper]: Clone instructor's repo; edits `calculate_mean.py` 
 * [Helper]: Modifies the docstring line as follows: `This function computes the mean of a **one-dimensional** array` Adds, commits and **pushes** changes to remote. 
@@ -880,8 +883,8 @@ git push origin main #[This works only if participants are added to the reposito
 
 ```shell
 git pull origin main
-git branch leila71
-git checkout leila71
+git branch leila_checking
+git checkout leila_checking
 ```
 
 #### c. Edit your Check-in file 
@@ -897,7 +900,7 @@ A basic collaborative workflow using git is:
 
 * "Make changes and stage them with `git add`,"
 * "Commit changes with `git commit -m`, and"
-* "Upload the changes to GitHub with `git push origin leila71`"
+* "Upload the changes to GitHub with `git push origin leila_checking`"
 
 
 > Demo pull request on GitHub
